@@ -8,17 +8,17 @@ public class Tipo_UnidadDTO {
 
         private String Description;
 
-        private Float Ataque;
+        private Double Ataque;
 
-        private Float Defensa;
+        private Double Defensa;
 
-        private Float Costo_Dinero;
+        private Double Costo_Dinero;
 
         private Integer Costo_RH;
 
-        private Float Costo_petroleo;
+        private Double Costo_petroleo;
 
-        private Float Pillaje;
+        private Double Pillaje;
 
         private Integer unidad_batalla;
 
@@ -29,61 +29,41 @@ public class Tipo_UnidadDTO {
 
         public void setDescription(String description) { Description = description; }
 
-        public void setAtaque(Float ataque) { Ataque = ataque; }
+        public void setAtaque(Double ataque) { Ataque = ataque; }
 
-        public void setDefensa(Float defensa) { Defensa = defensa; }
+        public void setDefensa(Double defensa) { Defensa = defensa; }
 
-        public void setCosto_Dinero(Float costo_Dinero) { Costo_Dinero = costo_Dinero; }
+        public void setCosto_Dinero(Double costo_Dinero) { Costo_Dinero = costo_Dinero; }
 
         public void setCosto_RH(Integer costo_RH) { Costo_RH = costo_RH; }
 
-        public void setCosto_petroleo(Float costo_petroleo) { Costo_petroleo = costo_petroleo; }
+        public void setCosto_petroleo(Double costo_petroleo) { Costo_petroleo = costo_petroleo; }
 
-        public void setPillaje(Float pillaje) { Pillaje = pillaje; }
+        public void setPillaje(Double pillaje) { Pillaje = pillaje; }
 
         public void setUnidad_batalla(Integer unidad_batalla) { this.unidad_batalla = unidad_batalla; }
 
         public void setTotal_unidades(Integer total_unidades) { Total_unidades = total_unidades; }
 
-        public Integer getID_Tipo_unidad() {
-            return ID_Tipo_unidad;
-        }
+        public Integer getID_Tipo_unidad() { return ID_Tipo_unidad; }
 
-        public String getDescription() {
-            return Description;
-        }
+        public String getDescription() { return Description; }
 
-        public Float getAtaque() {
-            return Ataque;
-        }
+        public Double getAtaque() { return Ataque; }
 
-        public Float getDefensa() {
-            return Defensa;
-        }
+        public Double getDefensa() { return Defensa; }
 
-        public Float getCosto_Dinero() {
-            return Costo_Dinero;
-        }
+        public Double getCosto_Dinero() { return Costo_Dinero; }
 
-        public Integer getCosto_RH() {
-            return Costo_RH;
-        }
+        public Integer getCosto_RH() { return Costo_RH; }
 
-        public Float getCosto_petroleo() {
-            return Costo_petroleo;
-        }
+        public Double getCosto_petroleo() { return Costo_petroleo; }
 
-        public Float getPillaje() {
-            return Pillaje;
-        }
+        public Double getPillaje() { return Pillaje; }
 
-        public Integer getUnidad_batalla() {
-            return unidad_batalla;
-        }
+        public Integer getUnidad_batalla() { return unidad_batalla; }
 
-        public Integer getTotal_unidades() {
-            return Total_unidades;
-        }
+        public Integer getTotal_unidades() { return Total_unidades; }
     }
 
     public static class Request {
@@ -93,17 +73,17 @@ public class Tipo_UnidadDTO {
 
         private String Description;
 
-        private Float Ataque;
+        private Double Ataque;
 
-        private Float Defensa;
+        private Double Defensa;
 
-        private Float Costo_Dinero;
+        private Double Costo_Dinero;
 
-        private Float Pillaje;
+        private Double Pillaje;
 
         private Integer Costo_RH;
 
-        private Float Costo_petroleo;
+        private Double Costo_petroleo;
 
         private Integer unidadBatalla;
 
@@ -114,19 +94,19 @@ public class Tipo_UnidadDTO {
 
         public String getDescription() { return Description; }
 
-        public Float getAtaque() { return Ataque; }
+        public Double getAtaque() { return Ataque; }
 
-        public Float getDefensa() { return Defensa; }
+        public Double getDefensa() { return Defensa; }
 
-        public Float getCosto_Dinero() { return Costo_Dinero; }
+        public Double getCosto_Dinero() { return Costo_Dinero; }
 
         public Integer getCosto_RH() { return Costo_RH; }
 
-        public Float getCosto_petroleo() { return Costo_petroleo; }
+        public Double getCosto_petroleo() { return Costo_petroleo; }
 
         public Integer getUnidadesBatalla() { return unidadBatalla; }
 
-        public Float getPillaje() { return Pillaje; }
+        public Double getPillaje() { return Pillaje; }
 
         public Integer getTotal_unidades() { return Total_unidades; }
 
@@ -138,19 +118,19 @@ public class Tipo_UnidadDTO {
             Description = description;
         }
 
-        public void setAtaque(Float ataque) {
+        public void setAtaque(Double ataque) {
             Ataque = ataque;
         }
 
-        public void setDefensa(Float defensa) {
+        public void setDefensa(Double defensa) {
             Defensa = defensa;
         }
 
-        public void setCosto_Dinero(Float costo_Dinero) {
+        public void setCosto_Dinero(Double costo_Dinero) {
             Costo_Dinero = costo_Dinero;
         }
 
-        public void setPillaje(Float pillaje) {
+        public void setPillaje(Double pillaje) {
             Pillaje = pillaje;
         }
 
@@ -158,7 +138,7 @@ public class Tipo_UnidadDTO {
             Costo_RH = costo_RH;
         }
 
-        public void setCosto_petroleo(Float costo_petroleo) {
+        public void setCosto_petroleo(Double costo_petroleo) {
             Costo_petroleo = costo_petroleo;
         }
 

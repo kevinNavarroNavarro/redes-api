@@ -22,8 +22,8 @@ public class IndiceCalculator {
             UnidadBatalla unidadBatalla = tipoUnidad.getUnidadBatalla();
             List<TipoUnidad> tipoUnidades=unidadBatalla.getUnidadesBatalla();
             //Setter el valor a 0 para volver a realizar el calculo
-            tipoUnidad.getUnidadBatalla().getGuerrilla().setIndice_ataque(0.0f);
-            tipoUnidad.getUnidadBatalla().getGuerrilla().setIndice_defensa(0.0f);
+            tipoUnidad.getUnidadBatalla().getGuerrilla().setIndice_ataque(0.0);
+            tipoUnidad.getUnidadBatalla().getGuerrilla().setIndice_defensa(0.0);
 
             for(TipoUnidad unidad: tipoUnidades) {//Recorre todas las tropas de la Unidad de Batalla
                 if (unidad.getID_Tipo_unidad() == tipoUnidad.getID_Tipo_unidad()) { //Si es actualizacion toma los datos actualizados
@@ -32,8 +32,8 @@ public class IndiceCalculator {
                     tipoUnidad.getUnidadBatalla().getGuerrilla().setIndice_defensa(tipoUnidad.getUnidadBatalla().getGuerrilla().getIndice_defensa() +
                             tipoUnidad.getDefensa() * tipoUnidad.getTotal_unidades());
                 }else {
-                    unidad.getUnidadBatalla().getGuerrilla().setIndice_ataque(unidad.getUnidadBatalla().getGuerrilla().getIndice_ataque()
-                            + unidad.getAtaque() * unidad.getTotal_unidades());
+                    unidad.getUnidadBatalla().getGuerrilla().setIndice_ataque(unidad.getUnidadBatalla().getGuerrilla().getIndice_ataque() +
+                            unidad.getAtaque() * unidad.getTotal_unidades());
                     unidad.getUnidadBatalla().getGuerrilla().setIndice_defensa(unidad.getUnidadBatalla().getGuerrilla().getIndice_defensa() +
                             unidad.getDefensa() * unidad.getTotal_unidades());
                 }

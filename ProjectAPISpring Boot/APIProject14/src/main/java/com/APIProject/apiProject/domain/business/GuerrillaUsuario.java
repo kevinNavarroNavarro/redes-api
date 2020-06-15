@@ -36,23 +36,23 @@ public class GuerrillaUsuario {
 
     @NotNull
     @Column(name = "Petroleo")
-    private Float Petroleo;
+    private Double Petroleo;
 
     @NotNull
     @Column(name = "Dinero")
-    private Float Dinero;
+    private Double Dinero;
 
     @NotNull
     @Column(name = "Puntaje")
-    private Float Puntaje;
+    private Double Puntaje;
 
     @NotNull
     @Column(name = "Indice_defensa")
-    private Float Indice_defensa;
+    private Double Indice_defensa;
 
     @NotNull
     @Column(name = "Indice_ataque")
-    private Float Indice_ataque;
+    private Double Indice_ataque;
 
     @OneToMany(mappedBy = "guerrilla", fetch = FetchType.LAZY)
     private List<UnidadBatalla> unidad_batallas;
@@ -78,25 +78,25 @@ public class GuerrillaUsuario {
 
     public void setRecurso_humano(Integer recurso_humano) { Recurso_humano = recurso_humano; }
 
-    public Float getPetroleo() { return Petroleo; }
+    public Double getPetroleo() { return Petroleo; }
 
-    public void setPetroleo(Float petroleo) { Petroleo = petroleo; }
+    public void setPetroleo(Double petroleo) { Petroleo = petroleo; }
 
-    public Float getDinero() { return Dinero; }
+    public Double getDinero() { return Dinero; }
 
-    public void setDinero(Float dinero) { Dinero = dinero; }
+    public void setDinero(Double dinero) { Dinero = dinero; }
 
-    public Float getPuntaje() { return Puntaje; }
+    public Double getPuntaje() { return Puntaje; }
 
-    public void setPuntaje(Float puntaje) { Puntaje = puntaje; }
+    public void setPuntaje(Double puntaje) { Puntaje = puntaje; }
 
-    public Float getIndice_defensa() { return Indice_defensa; }
+    public Double getIndice_defensa() { return Indice_defensa; }
 
-    public void setIndice_defensa(Float indice_defensa) { Indice_defensa = indice_defensa; }
+    public void setIndice_defensa(Double indice_defensa) { Indice_defensa = indice_defensa; }
 
-    public Float getIndice_ataque() { return Indice_ataque; }
+    public Double getIndice_ataque() { return Indice_ataque; }
 
-    public void setIndice_ataque(Float indice_ataque) { Indice_ataque = indice_ataque; }
+    public void setIndice_ataque(Double indice_ataque) { Indice_ataque = indice_ataque; }
 
     public List<UnidadBatalla> getUnidad_batallas() { return unidad_batallas; }
 

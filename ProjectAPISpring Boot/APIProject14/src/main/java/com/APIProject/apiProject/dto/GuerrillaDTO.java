@@ -16,15 +16,15 @@ public class GuerrillaDTO {
 
         private Integer Recurso_humano;
 
-        private Float Petroleo;
+        private Double Petroleo;
 
-        private Float Dinero;
+        private Double Dinero;
 
-        private Float Puntaje;
+        private Double Puntaje;
 
-        private Float Indice_defensa;
+        private Double Indice_defensa;
 
-        private Float Indice_ataque;
+        private Double Indice_ataque;
 
         private List<Integer> unidades_batallas;
 
@@ -48,25 +48,25 @@ public class GuerrillaDTO {
 
         public void setRecurso_humano(Integer recurso_humano) { Recurso_humano = recurso_humano; }
 
-        public Float getPetroleo() { return Petroleo; }
+        public Double getPetroleo() { return Petroleo; }
 
-        public void setPetroleo(Float petroleo) { Petroleo = petroleo; }
+        public void setPetroleo(Double petroleo) { Petroleo = petroleo; }
 
-        public Float getDinero() { return Dinero; }
+        public Double getDinero() { return Dinero; }
 
-        public void setDinero(Float dinero) { Dinero = dinero; }
+        public void setDinero(Double dinero) { Dinero = dinero; }
 
-        public Float getPuntaje() { return Puntaje; }
+        public Double getPuntaje() { return Puntaje; }
 
-        public void setPuntaje(Float puntaje) { Puntaje = puntaje; }
+        public void setPuntaje(Double puntaje) { Puntaje = puntaje; }
 
-        public Float getIndice_defensa() { return Indice_defensa; }
+        public Double getIndice_defensa() { return Indice_defensa; }
 
-        public void setIndice_defensa(Float indice_defensa) { Indice_defensa = indice_defensa; }
+        public void setIndice_defensa(Double indice_defensa) { Indice_defensa = indice_defensa; }
 
-        public Float getIndice_ataque() { return Indice_ataque; }
+        public Double getIndice_ataque() { return Indice_ataque; }
 
-        public void setIndice_ataque(Float indice_ataque) { Indice_ataque = indice_ataque; }
+        public void setIndice_ataque(Double indice_ataque) { Indice_ataque = indice_ataque; }
 
         public List<Integer> getUnidades_batallas() { return unidades_batallas; }
 
@@ -86,15 +86,15 @@ public class GuerrillaDTO {
 
         private Integer Recurso_humano;
 
-        private Float Petroleo;
+        private Double Petroleo;
 
-        private Float Dinero;
+        private Double Dinero;
 
-        private Float Puntaje;
+        private Double Puntaje;
 
-        private Float Indice_defensa;
+        private Double Indice_defensa;
 
-        private Float Indice_ataque;
+        private Double Indice_ataque;
 
         public String getEmail() { return Email; }
 
@@ -108,15 +108,15 @@ public class GuerrillaDTO {
 
         public void setRecurso_humano(Integer recurso_humano) { Recurso_humano = recurso_humano; }
 
-        public void setPetroleo(Float petroleo) { Petroleo = petroleo; }
+        public void setPetroleo(Double petroleo) { Petroleo = petroleo; }
 
-        public void setDinero(Float dinero) { Dinero = dinero; }
+        public void setDinero(Double dinero) { Dinero = dinero; }
 
-        public void setPuntaje(Float puntaje) { Puntaje = puntaje; }
+        public void setPuntaje(Double puntaje) { Puntaje = puntaje; }
 
-        public void setIndice_defensa(Float indice_defensa) { Indice_defensa = indice_defensa; }
+        public void setIndice_defensa(Double indice_defensa) { Indice_defensa = indice_defensa; }
 
-        public void setIndice_ataque(Float indice_ataque) { Indice_ataque = indice_ataque; }
+        public void setIndice_ataque(Double indice_ataque) { Indice_ataque = indice_ataque; }
 
         public Integer getID_Guerrilla_Usuario() {
             return ID_Guerrilla_Usuario;
@@ -134,23 +134,23 @@ public class GuerrillaDTO {
             return Recurso_humano;
         }
 
-        public Float getPetroleo() {
+        public Double getPetroleo() {
             return Petroleo;
         }
 
-        public Float getDinero() {
+        public Double getDinero() {
             return Dinero;
         }
 
-        public Float getPuntaje() {
+        public Double getPuntaje() {
             return Puntaje;
         }
 
-        public Float getIndice_defensa() {
+        public Double getIndice_defensa() {
             return Indice_defensa;
         }
 
-        public Float getIndice_ataque() {
+        public Double getIndice_ataque() {
             return Indice_ataque;
         }
     }

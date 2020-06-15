@@ -32,10 +32,12 @@ public class FactionProperties {
         String factionLowerCase =tipoUnidad.getUnidadBatalla().getGuerrilla().getFaccion().toLowerCase();
         // Si la faccion es chino, entonces sus unidades cuestan 12% menos del valor real de las unidades
         if(factionLowerCase.equals("chino")){
-            Float newCostoDinero= (tipoUnidad.getCosto_Dinero()-(tipoUnidad.getCosto_Dinero()*(12/100)));
-            Float newCostoPetroleo= (tipoUnidad.getCosto_petroleo()-(tipoUnidad.getCosto_petroleo()*(12/100)));
+            Double newCostoDinero = tipoUnidad.getCosto_Dinero()-(tipoUnidad.getCosto_Dinero()/10);
+            Double newCostoPetroleo = tipoUnidad.getCosto_petroleo()-(tipoUnidad.getCosto_petroleo()/12);
             tipoUnidad.setCosto_Dinero(newCostoDinero);
             tipoUnidad.setCosto_petroleo(newCostoPetroleo);
+            System.out.println(newCostoDinero);
+            System.out.println(newCostoPetroleo);
         }
         return tipoUnidad;
     }

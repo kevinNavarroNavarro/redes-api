@@ -22,10 +22,10 @@ public class BuyUnit {
             }
         }
 
-        Float dinero = newUnidad.getUnidadBatalla().getGuerrilla().getDinero();
-        Float costoTotalDinero=  newUnidad.getCosto_Dinero()*newUnidad.getTotal_unidades();
-        Float petroleo = newUnidad.getUnidadBatalla().getGuerrilla().getPetroleo();
-        Float costoTotalPetroleo=  newUnidad.getCosto_petroleo()*newUnidad.getTotal_unidades();
+        Double dinero = newUnidad.getUnidadBatalla().getGuerrilla().getDinero();
+        Double costoTotalDinero=  newUnidad.getCosto_Dinero()*newUnidad.getTotal_unidades();
+        Double petroleo = newUnidad.getUnidadBatalla().getGuerrilla().getPetroleo();
+        Double costoTotalPetroleo=  newUnidad.getCosto_petroleo()*newUnidad.getTotal_unidades();
 
         // Revisa tener el suficiente Oro y Petroleo para comprar las unidades
         if(dinero>=costoTotalDinero && petroleo>=costoTotalPetroleo){

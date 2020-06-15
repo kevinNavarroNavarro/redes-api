@@ -35,10 +35,11 @@ public class Tipo_UnidadService {
     }
 
     public TipoUnidad update(TipoUnidad tipo_Unidad) {
-        find(tipo_Unidad.getID_Tipo_unidad());
+        factionProperties = new FactionProperties();
         indiceCalculator = new IndiceCalculator();
         indiceCalculator.SetIndex(tipo_Unidad);
         buyUnit = new BuyUnit();
+        tipo_Unidad = factionProperties.PropertiesFractionTipoUnidad(tipo_Unidad);
         return repository.save(buyUnit.BuyUnit(tipo_Unidad));
     }
 

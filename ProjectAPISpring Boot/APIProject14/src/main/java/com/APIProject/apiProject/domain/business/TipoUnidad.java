@@ -20,15 +20,15 @@ public class TipoUnidad {
 
     @NotNull
     @Column(name = "Ataque")
-    private Float Ataque;
+    private Double Ataque;
 
     @NotNull
     @Column(name = "Defensa")
-    private Float Defensa;
+    private Double Defensa;
 
     @NotNull
     @Column(name = "Costo_Dinero")
-    private Float Costo_Dinero;
+    private Double Costo_Dinero;
 
     @NotNull
     @Column(name = "Costo_RH")
@@ -36,11 +36,11 @@ public class TipoUnidad {
 
     @NotNull
     @Column(name = "Costo_petroleo")
-    private Float Costo_petroleo;
+    private Double Costo_petroleo;
 
     @NotNull
     @Column(name = "Pillaje")
-    private Float Pillaje;
+    private Double Pillaje;
 
     @NotNull
     @Column(name = "Total_unidad")
@@ -59,29 +59,29 @@ public class TipoUnidad {
 
     public void setDescription(String description) { Description = description; }
 
-    public Float getAtaque() { return Ataque; }
+    public Double getAtaque() { return Ataque; }
 
-    public void setAtaque(Float ataque) { Ataque = ataque; }
+    public void setAtaque(Double ataque) { Ataque = ataque; }
 
-    public Float getDefensa() { return Defensa; }
+    public Double getDefensa() { return Defensa; }
 
-    public void setDefensa(Float defensa) { Defensa = defensa; }
+    public void setDefensa(Double defensa) { Defensa = defensa; }
 
-    public Float getCosto_Dinero() { return Costo_Dinero; }
+    public Double getCosto_Dinero() { return Costo_Dinero; }
 
-    public void setCosto_Dinero(Float costo_Dinero) { Costo_Dinero = costo_Dinero; }
+    public void setCosto_Dinero(Double costo_Dinero) { Costo_Dinero = costo_Dinero; }
 
     public Integer getCosto_RH() { return Costo_RH; }
 
     public void setCosto_RH(Integer costo_RH) { Costo_RH = costo_RH; }
 
-    public Float getCosto_petroleo() { return Costo_petroleo; }
+    public Double getCosto_petroleo() { return Costo_petroleo; }
 
-    public void setCosto_petroleo(Float costo_petroleo) { Costo_petroleo = costo_petroleo; }
+    public void setCosto_petroleo(Double costo_petroleo) { Costo_petroleo = costo_petroleo; }
 
-    public Float getPillaje() { return Pillaje; }
+    public Double getPillaje() { return Pillaje; }
 
-    public void setPillaje(Float pillaje) { Pillaje = pillaje; }
+    public void setPillaje(Double pillaje) { Pillaje = pillaje; }
 
     public UnidadBatalla getUnidadBatalla() {
         return UnidadBatalla;

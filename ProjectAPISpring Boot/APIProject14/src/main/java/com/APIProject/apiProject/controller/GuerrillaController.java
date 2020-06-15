@@ -1,5 +1,6 @@
 package com.APIProject.apiProject.controller;
 
+import com.APIProject.apiProject.Model.AttackGuerrilla;
 import com.APIProject.apiProject.converter.GuerrillaRestConverter;
 import com.APIProject.apiProject.domain.business.GuerrillaUsuario;
 import com.APIProject.apiProject.dto.GuerrillaDTO;
@@ -20,6 +21,8 @@ public class GuerrillaController {
 
     @Autowired
     private GuerrillaRestConverter converter;
+
+    AttackGuerrilla attackGuerrilla;
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public GuerrillaDTO.Response findById(
@@ -50,5 +53,15 @@ public class GuerrillaController {
         return service.findAll().stream().map(it -> converter.toResponse(it))
                 .collect(Collectors.toList());
     }
-}
 
+    @RequestMapping(path = "/{idAtacante}/{idAtacado}", method = RequestMethod.PUT)
+    public List<GuerrillaDTO.Response> attackGuerrillas(@PathVariable("idAtacante") Integer atacante,
+                                              @PathVariable("idAtacado") Integer atacado){
+        attackGuerrilla = new AttackGuerrilla();
+
+        List<GuerrillaUsuario> responses =attackGuerrilla.AttackGuerrilla(service.find(atacante),service.find(atacado));
+        service.update(responses.get(0));
+        service.update(responses.get(1));
+        return responses.stream().map(it -> converter.toResponse(it)).collect(Collectors.toList());
+    }
+}
