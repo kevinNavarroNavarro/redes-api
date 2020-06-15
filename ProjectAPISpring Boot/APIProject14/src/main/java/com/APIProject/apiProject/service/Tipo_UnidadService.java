@@ -36,11 +36,12 @@ public class Tipo_UnidadService {
 
     public TipoUnidad update(TipoUnidad tipo_Unidad) {
         factionProperties = new FactionProperties();
-        indiceCalculator = new IndiceCalculator();
-        indiceCalculator.SetIndex(tipo_Unidad);
         buyUnit = new BuyUnit();
+        indiceCalculator = new IndiceCalculator();
+        tipo_Unidad = buyUnit.BuyUnit(tipo_Unidad);
+        indiceCalculator.SetIndex(tipo_Unidad);
         tipo_Unidad = factionProperties.PropertiesFractionTipoUnidad(tipo_Unidad);
-        return repository.save(buyUnit.BuyUnit(tipo_Unidad));
+        return repository.save(tipo_Unidad);
     }
 
     public void delete(Integer id) {

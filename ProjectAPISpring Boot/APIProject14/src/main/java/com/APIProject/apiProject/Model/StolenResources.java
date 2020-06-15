@@ -89,7 +89,7 @@ public class StolenResources {
         }
         decideRanking = new DecideRanking();
         decideRanking.DecideRanking(atacante);
-        decideRanking.DecideRanking(atacante);
+        decideRanking.DecideRanking(atacado);
 
         ArrayList<GuerrillaUsuario> guerrillas = new ArrayList<GuerrillaUsuario>();;
         guerrillas.add(atacante);
