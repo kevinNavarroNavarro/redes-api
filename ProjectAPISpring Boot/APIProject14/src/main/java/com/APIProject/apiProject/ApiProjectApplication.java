@@ -1,7 +1,7 @@
 package com.APIProject.apiProject;
 
 import com.APIProject.apiProject.Model.FactionProperties;
-import com.APIProject.apiProject.service.GuerrillaService;
+import com.APIProject.apiProject.service.WarfareService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +12,7 @@ public class ApiProjectApplication {
 
 		org.springframework.context.ApplicationContext context = (ApplicationContext) SpringApplication.run(ApiProjectApplication.class, args);
 		FactionProperties factionProperties = new FactionProperties();
-		GuerrillaService serviceGuerrilla = (GuerrillaService) context.getBean("guerrillaService");
+		WarfareService serviceGuerrilla = (WarfareService) context.getBean("warfareService");
 
 		Runnable runnable= new Runnable() {
 			@Override

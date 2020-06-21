@@ -1,67 +1,43 @@
 package com.APIProject.apiProject.Model;
 
-import com.APIProject.apiProject.domain.business.TipoUnidad;
-import com.APIProject.apiProject.exceptions.InvalidAmountException;
-
-import java.util.List;
+import com.APIProject.apiProject.converter.WarfareRestConverter;
+import com.APIProject.apiProject.domain.business.Warfare;
+import com.APIProject.apiProject.dto.WarfareDTO;
+import com.APIProject.apiProject.exceptions.NonSufficientFunds;
+import com.APIProject.apiProject.service.WarfareService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class BuyUnit {
 
+    @Autowired
+    WarfareRestConverter converter;
+
     DecideRanking decideRanking;
-    public TipoUnidad BuyUnit(TipoUnidad newUnidad){
-        List<TipoUnidad> unidades = newUnidad.getUnidadBatalla().getUnidadesBatalla();
-        Boolean UnidadExits=false;
-        TipoUnidad antUnidad= new TipoUnidad();
+
+    public Warfare BuyUnit(WarfareDTO.RequestUnits dto, String warfareName, WarfareService service){
         decideRanking = new DecideRanking();
+        Warfare warfare = service.findByWarfareName(warfareName);
 
-        // Se busca la unidad que se esta actualizando para tomar las unidades ya existentes
-        for (TipoUnidad unidad: unidades) {
-            if(unidad.getID_Tipo_unidad()==newUnidad.getID_Tipo_unidad()) {
-                UnidadExits = true;
-                antUnidad = unidad;
-                break;
-            }
-        }
-
-        Double dinero = newUnidad.getUnidadBatalla().getGuerrilla().getDinero();
-        Double costoTotalDinero=  newUnidad.getCosto_Dinero()*newUnidad.getTotal_unidades();
-        Double petroleo = newUnidad.getUnidadBatalla().getGuerrilla().getPetroleo();
-        Double costoTotalPetroleo=  newUnidad.getCosto_petroleo()*newUnidad.getTotal_unidades();
+        //Se calcula el costo de petroleo y dinero de las unidades
+        Integer unitsCostMoney = (20*dto.getAssault())+(10*dto.getEngineer())+(200*dto.getTank())+ (300*dto.getBunker());
+        Integer unitsCostOil = (25*dto.getAssault())+(25*dto.getEngineer())+(500*dto.getTank())+ (200*dto.getBunker());
+        Integer unitsCostPeople = ((dto.getAssault()*1)+(dto.getEngineer()*1)+(dto.getTank()*8)+(dto.getBunker()*8));
 
         // Revisa tener el suficiente Oro y Petroleo para comprar las unidades
-        if(dinero>=costoTotalDinero && petroleo>=costoTotalPetroleo){
+        if(warfare.getMoney()>= unitsCostMoney && warfare.getOil()>=unitsCostOil &&
+                warfare.getPeople()>=unitsCostPeople){
             //Se toman las unidades ya existentes y se le suman a las nuevas
-            if(UnidadExits){
-                newUnidad.setTotal_unidades(antUnidad.getTotal_unidades()+newUnidad.getTotal_unidades());
-            }
-            newUnidad.getUnidadBatalla().getGuerrilla().setDinero(dinero-costoTotalDinero);
-            newUnidad.getUnidadBatalla().getGuerrilla().setPetroleo(petroleo-costoTotalPetroleo);
-            newUnidad.getUnidadBatalla().getGuerrilla().setRecurso_humano(newUnidad.getUnidadBatalla().
-                    getGuerrilla().getRecurso_humano()+newUnidad.getTotal_unidades());
-            newUnidad.getUnidadBatalla().getGuerrilla().setRecurso_humano(PersonCalculate(newUnidad));
-            decideRanking.DecideRanking(newUnidad.getUnidadBatalla().getGuerrilla());
+            warfare.setAssault(warfare.getAssault()+dto.getAssault());
+            warfare.setEngineer(warfare.getEngineer()+dto.getEngineer());
+            warfare.setTank(warfare.getTank()+dto.getTank());
+            warfare.setBunker(warfare.getBunker()+dto.getBunker());
+            warfare.setMoney(warfare.getMoney()-unitsCostMoney);
+            warfare.setOil(warfare.getOil()-unitsCostOil);
+            warfare.setPeople(warfare.getPeople()-unitsCostPeople);
+            decideRanking.DecideRanking(warfare);
         }else{
-            // Se envia un msj de que no se tienen suficientes fondos
-            throw  new InvalidAmountException(newUnidad.getID_Tipo_unidad()+"");
+            throw new NonSufficientFunds("Sus recursos no son suficientes para comprar las unidades");
         }
-        return newUnidad;
-    }
-
-    // Calcula los recursos humanos de la Unidad de Batalla
-    private Integer PersonCalculate(TipoUnidad newunidad){
-        newunidad.getUnidadBatalla().getGuerrilla().setRecurso_humano(0);
-        List<TipoUnidad> unidades = newunidad.getUnidadBatalla().getUnidadesBatalla();
-        System.out.println(unidades.size());
-        for(TipoUnidad unidad: unidades ){
-            //Si las unidades son iguales se toma la unidad actualizada para sumar el total de unidades
-            if (newunidad.getID_Tipo_unidad()==unidad.getID_Tipo_unidad()) {
-                newunidad.getUnidadBatalla().getGuerrilla().setRecurso_humano(newunidad.
-                        getUnidadBatalla().getGuerrilla().getRecurso_humano() + newunidad.getTotal_unidades());
-            }else {
-                newunidad.getUnidadBatalla().getGuerrilla().setRecurso_humano(newunidad.
-                        getUnidadBatalla().getGuerrilla().getRecurso_humano() + unidad.getTotal_unidades());
-            }
-        }
-        return newunidad.getUnidadBatalla().getGuerrilla().getRecurso_humano();
+        return warfare;
     }
 }

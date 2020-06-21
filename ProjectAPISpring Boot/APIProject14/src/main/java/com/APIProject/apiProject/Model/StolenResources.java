@@ -1,100 +1,79 @@
 package com.APIProject.apiProject.Model;
 
-import com.APIProject.apiProject.domain.business.GuerrillaUsuario;
-import com.APIProject.apiProject.domain.business.TipoUnidad;
-import com.APIProject.apiProject.domain.business.UnidadBatalla;
-import com.APIProject.apiProject.service.GuerrillaService;
-import com.APIProject.apiProject.service.Tipo_UnidadService;
-import com.APIProject.apiProject.service.UnidadBatallaService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.APIProject.apiProject.domain.business.Warfare;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class StolenResources {
 
-    @Autowired
-    GuerrillaService guerrillaService = new GuerrillaService();
-
-    @Autowired
-    UnidadBatallaService unidadBatallaService = new UnidadBatallaService();
-
-    @Autowired
-    Tipo_UnidadService tipoUnidadService = new Tipo_UnidadService();
-
     DecideRanking decideRanking;
 
     //Permite calcular el total de recursos que se le pueden robar al enemigo
-    public ArrayList<GuerrillaUsuario> StolenResources(GuerrillaUsuario atacante, GuerrillaUsuario atacado){
-        //Declaracion de Variables
-        Double pillajeTotal;
-        Double pillajePetroleo;
-        Double pillajeDinero;
+    public List<Warfare> StolenResources(Warfare attacker, Warfare attacked){
+        decideRanking = new DecideRanking();
 
-        UnidadBatalla unidad = atacante.getUnidad_batallas().get(0);
-        List<TipoUnidad> unidades = unidad.getUnidadesBatalla();
+        // Se calcula el valor de los datos del pillaje
+        Integer totalPillage = ((attacker.getAssault()*25)+(attacker.getEngineer()*60)+(attacker.getTank()*200));
+        Integer oilPillage = (totalPillage *60)/100;
+        Integer moneyPillage = (totalPillage*40)/100;
 
-        for(TipoUnidad tipoUnidad: unidades){
-            // Se calcula el valor de los datos del pillaje
-            pillajeTotal = tipoUnidad.getTotal_unidades()*tipoUnidad.getPillaje();
-            pillajePetroleo = (pillajeTotal *60)/100;
-            pillajeDinero= (pillajeTotal *40)/100;
+        // Se confirma que tenga recursos que robar
+        if(attacked.getMoney()!=0 || attacked.getOil()!=0){
+            Integer newMoneyPillage = moneyPillage;
+            Integer newOilPillage = oilPillage;
+            moneyPillage=moneyPillage-attacked.getMoney();
+            oilPillage=oilPillage-attacked.getOil();
 
-            // Se confirma que tenga recursos que robar
-            if(atacado.getDinero()!=0 || atacado.getPetroleo()!=0){
-                Double newPijalleDinero = pillajeDinero;
-                Double newPijallePetroleo = pillajePetroleo;
-                pillajeDinero=pillajeDinero-atacado.getDinero();
-                pillajePetroleo=pillajePetroleo-atacado.getPetroleo();
-                if(pillajeDinero<=0 && pillajePetroleo<=0){//Tiene suficiente Oro y Petroleo
-                    atacante.setDinero(atacante.getDinero()+newPijalleDinero);
-                    atacado.setDinero(atacado.getDinero()-newPijalleDinero);
-                    atacante.setPetroleo(atacante.getPetroleo()+newPijallePetroleo);
-                    atacado.setPetroleo(atacado.getPetroleo()-newPijallePetroleo);
-                }else if(pillajeDinero>0 && pillajePetroleo<=0){//No tiene suficiente Oro pero petroleo si
-                    atacante.setDinero(atacante.getDinero()+atacado.getDinero());
-                    atacado.setDinero(0.0);
-                    pillajePetroleo=0.0;
-                    pillajePetroleo= newPijallePetroleo+pillajeDinero;
-                    newPijallePetroleo=pillajePetroleo;
-                    pillajePetroleo=pillajePetroleo-atacado.getPetroleo();
-                    if(pillajePetroleo<0){
-                        atacante.setPetroleo(atacante.getPetroleo()+newPijallePetroleo);
-                        atacado.setPetroleo(atacado.getPetroleo()-newPijallePetroleo);
-                    }else{
-                        atacante.setPetroleo(atacante.getPetroleo()+atacado.getPetroleo());
-                        atacado.setPetroleo(0.0);
-                    }
-                }else if(pillajeDinero<=0 && pillajePetroleo>0){//No tiene suficiente Petroleo pero Oro si
-                    atacante.setPetroleo(atacante.getPetroleo()+atacado.getPetroleo());
-                    atacado.setPetroleo(0.0);
-                    pillajeDinero=0.0;
-                    pillajeDinero= newPijalleDinero+pillajePetroleo;
-                    newPijalleDinero=pillajeDinero;
-                    pillajeDinero=pillajeDinero-atacado.getDinero();
-                    if(pillajeDinero<0){
-                        atacante.setDinero(atacante.getDinero()+newPijalleDinero);
-                        atacado.setDinero(atacado.getDinero()-newPijalleDinero);
-                    }else{
-                        atacante.setDinero(atacante.getDinero()+atacado.getDinero());
-                        atacado.setDinero(0.0);
-                    }
-                }else{//No tienen suficientes recursos
-                    atacante.setDinero(atacante.getDinero()+atacado.getDinero());
-                    atacado.setDinero(0.0);
-                    atacante.setPetroleo(atacante.getPetroleo()+atacado.getPetroleo());
-                    atacado.setPetroleo(0.0);
+            if(moneyPillage<=0 && oilPillage<=0){//Tiene suficiente Oro y Petroleo
+                attacker.setMoney(attacker.getMoney()+newMoneyPillage);
+                attacked.setMoney(attacked.getMoney()-newMoneyPillage);
+                attacker.setOil(attacker.getOil()+newOilPillage);
+                attacked.setOil(attacked.getOil()-newOilPillage);
+            }
+            else if(moneyPillage>0 && oilPillage<=0){//No tiene suficiente Oro pero petroleo si
+                attacker.setMoney(attacker.getMoney()+attacked.getMoney());
+                attacked.setMoney(0);
+                oilPillage=0;
+                oilPillage= newOilPillage+moneyPillage;
+                newOilPillage=oilPillage;
+                oilPillage=oilPillage-attacked.getOil();
+                if(oilPillage<0){
+                    attacker.setOil(attacker.getOil()+newOilPillage);
+                    attacked.setOil(attacked.getOil()-newOilPillage);
+                }else{
+                    attacker.setOil(attacker.getOil()+attacked.getOil());
+                    attacked.setOil(0);
                 }
+            }else if(moneyPillage<=0 && oilPillage>0){//No tiene suficiente Petroleo pero Oro si
+                attacker.setOil(attacker.getOil()+attacked.getOil());
+                attacked.setOil(0);
+                moneyPillage=0;
+                moneyPillage= newMoneyPillage+oilPillage;
+                newMoneyPillage=moneyPillage;
+                moneyPillage=moneyPillage-attacked.getMoney();
+                if(moneyPillage<0){
+                    attacker.setMoney(attacker.getMoney()+newMoneyPillage);
+                    attacked.setMoney(attacked.getMoney()-newMoneyPillage);
+                }else{
+                    attacker.setMoney(attacker.getMoney()+attacked.getMoney());
+                    attacked.setMoney(0);
+                }
+            }else{//No tienen suficientes recursos
+                attacker.setMoney(attacker.getMoney()+attacked.getMoney());
+                attacked.setMoney(0);
+                attacker.setOil(attacker.getOil()+attacked.getOil());
+                attacked.setOil(0);
             }
         }
-        decideRanking = new DecideRanking();
-        decideRanking.DecideRanking(atacante);
-        decideRanking.DecideRanking(atacado);
 
-        ArrayList<GuerrillaUsuario> guerrillas = new ArrayList<GuerrillaUsuario>();;
-        guerrillas.add(atacante);
-        guerrillas.add(atacado);
+        decideRanking.DecideRanking(attacker);
+        decideRanking.DecideRanking(attacked);
 
-        return guerrillas;
+        List<Warfare> warfares = new ArrayList();
+        warfares.add(attacker);
+        warfares.add(attacked);
+
+        return warfares;
     }
 }
