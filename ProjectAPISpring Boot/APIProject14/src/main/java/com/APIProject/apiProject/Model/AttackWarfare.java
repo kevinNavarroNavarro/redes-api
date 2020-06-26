@@ -9,13 +9,19 @@ public class AttackWarfare {
     DeadUnit deadUnit;
     StolenResources stolenResources;
 
-    public List<Warfare> AttackGuerrilla (Warfare attacker, Warfare attacked){
+    public List<Warfare> AttackGuerrilla (Warfare attacker, Warfare attacked,ResultWarfare resultAttacker,
+                                          ResultWarfare resultAttacked){
         stolenResources = new StolenResources();
         deadUnit = new DeadUnit();
 
+        Warfare newAttacker = attacker;
+        Warfare newAttacked = attacked;
 
-        Integer indexOffense = ((attacker.getAssault()*80)+(attacker.getEngineer()*30)+(attacker.getTank()*500));
-        Integer indexDefense = ((attacked.getAssault()*20)+(attacked.getEngineer()*70)+(attacked.getTank()*20)+(attacked.getBunker()*600));
+        resultAttacker.setName(attacker.getWarfareName());
+        resultAttacked.setName(attacked.getWarfareName());
+
+        Integer indexOffense = ((newAttacker.getAssault()*80)+(newAttacker.getEngineer()*30)+(newAttacker.getTank()*500));
+        Integer indexDefense = ((newAttacked.getAssault()*20)+(newAttacked.getEngineer()*70)+(newAttacked.getTank()*20)+(newAttacked.getBunker()*600));
         Double TotalPower = Double.parseDouble(""+indexOffense+indexDefense);
 
         Double aD = indexOffense/TotalPower;
@@ -24,20 +30,22 @@ public class AttackWarfare {
         Double oD = indexDefense/TotalPower;
         Double Di = oD+0.1;
 
+
         if(Ai>=Di){// Si gana el atacante
             if (Ai>Di) {
-                attacker.setWins(attacker.getWins() + 1);
+                newAttacker.setWins(newAttacker.getWins() + 1);
             }
-            deadUnit.DeadUnitAttacked(attacker,attacked);
-            deadUnit.DeadUnitAttacker(attacker,attacked);
-            return stolenResources.StolenResources(attacker,attacked);
+            deadUnit.DeadUnitAttacked(newAttacker,newAttacked, resultAttacked);
+            deadUnit.DeadUnitAttacker(newAttacker,newAttacked, resultAttacker);
+            return  stolenResources.StolenResources(newAttacker,newAttacked, resultAttacker, resultAttacked);
+
         }else { // Si el atacado tiene mas defensa
-            attacked.setWins(attacked.getWins()+1);
-            deadUnit.DeadUnitAttacker(attacker,attacked);
-            deadUnit.DeadUnitAttacked(attacker,attacked);
+            newAttacked.setWins(newAttacked.getWins()+1);
+            deadUnit.DeadUnitAttacker(newAttacker,newAttacked, resultAttacker);
+            deadUnit.DeadUnitAttacked(newAttacker,newAttacked, resultAttacked);
             List<Warfare> warfares = new ArrayList<>();
-            warfares.add(attacker);
-            warfares.add(attacked);
+            warfares.add(newAttacker);
+            warfares.add(newAttacked);
             return warfares;
         }
 

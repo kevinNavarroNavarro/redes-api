@@ -1,19 +1,24 @@
 package com.APIProject.apiProject.dto;
 
+import com.APIProject.apiProject.Model.Army;
+import com.APIProject.apiProject.Model.Building;
+import com.APIProject.apiProject.Model.Resource;
+import com.APIProject.apiProject.Model.ResultWarfare;
+
 public class WarfareDTO {
 
     public static class Request {
         //Declaracion de variable
-        private String warfareName;
+        private String guerrillaName;
 
         private String email;
 
         private String faction;
 
         // Getters and setters
-        public String getWarfareName() {return warfareName;}
+        public String getGuerrillaName() {return guerrillaName;}
 
-        public void setWarfareName(String warfareName) {this.warfareName = warfareName;}
+        public void setGuerrillaName(String guerrillaName) {this.guerrillaName = guerrillaName;}
 
         public String getEmail() {return email;}
 
@@ -28,51 +33,24 @@ public class WarfareDTO {
 
     public static class RequestUnits {
         //Declaracion de variable
-        private Integer assault;
 
-        private Integer engineer;
+        Building buildings = new Building();
 
-        private Integer tank;
-
-        private Integer bunker;
+        Army army = new Army();
 
         // Getters and setters
-        public Integer getAssault() {
-            return assault;
-        }
+        public Building getBuildings() { return buildings; }
 
-        public void setAssault(Integer assault) {
-            this.assault = assault;
-        }
+        public void setBuildings(Building buildings) { this.buildings = buildings; }
 
-        public Integer getEngineer() {
-            return engineer;
-        }
+        public Army getArmy() { return army; }
 
-        public void setEngineer(Integer engineer) {
-            this.engineer = engineer;
-        }
-
-        public Integer getTank() {
-            return tank;
-        }
-
-        public void setTank(Integer tank) {
-            this.tank = tank;
-        }
-
-        public Integer getBunker() {
-            return bunker;
-        }
-
-        public void setBunker(Integer bunker) {
-            this.bunker = bunker;
-        }
+        public void setArmy(Army army) { this.army = army; }
     }
 
     public static class Response{
         //Declaracion de variable
-        private String warfareName;
+        private String name;
 
         private String email;
 
@@ -82,25 +60,24 @@ public class WarfareDTO {
 
         private Integer wins;
 
-        private Integer oil;
+        Resource resources = new Resource();
 
-        private Integer money;
+        Army army = new Army();
 
-        private Integer people;
-
-        private Integer assault;
-
-        private Integer engineer;
-
-        private Integer tank;
-
-        private Integer bunker;
+        Building buildings = new Building();
 
         // Getters and setters
+        public Building getBuildings() { return buildings; }
 
-        public String getWarfareName() {return warfareName;}
+        public void setBuildings(Building buildings) { this.buildings = buildings; }
 
-        public void setWarfareName(String warfareName) {this.warfareName = warfareName;}
+        public Army getArmy() { return army; }
+
+        public void setArmy(Army army) { this.army = army; }
+
+        public String getName() {return name;}
+
+        public void setName(String name) {this.name = name;}
 
         public String getEmail() {return email;}
 
@@ -128,61 +105,77 @@ public class WarfareDTO {
             this.wins = wins;
         }
 
-        public Integer getOil() {
-            return oil;
+        public Resource getResources() { return resources; }
+
+        public void setResources(Resource resources) { this.resources = resources; }
+    }
+
+    public static class ResponseWarfare{
+        //Declaracion de variable
+        private String name;
+
+        private String email;
+
+        private String faction;
+
+        private Integer rank;
+
+        private Integer wins;
+
+        Resource resources = new Resource();
+
+        Army army = new Army();
+
+        Building buildings = new Building();
+
+        ResultWarfare results = new ResultWarfare();
+
+        // Getters and setters
+        public Building getBuildings() { return buildings; }
+
+        public void setBuildings(Building buildings) { this.buildings = buildings; }
+
+        public Army getArmy() { return army; }
+
+        public void setArmy(Army army) { this.army = army; }
+
+        public String getName() {return name;}
+
+        public void setName(String name) {this.name = name;}
+
+        public String getEmail() {return email;}
+
+        public void setEmail(String email) {this.email = email; }
+
+        public String getFaction() {return faction;}
+
+        public void setFaction(String faction) {
+            this.faction = faction;
         }
 
-        public void setOil(Integer oil) {
-            this.oil = oil;
+        public Integer getRank() {
+            return rank;
         }
 
-        public Integer getMoney() {
-            return money;
+        public void setRank(Integer rank) {
+            this.rank = rank;
         }
 
-        public void setMoney(Integer money) {
-            this.money = money;
+        public Integer getWins() {
+            return wins;
         }
 
-        public Integer getPeople() {
-            return people;
+        public void setWins(Integer wins) {
+            this.wins = wins;
         }
 
-        public void setPeople(Integer people) {
-            this.people = people;
-        }
+        public Resource getResources() { return resources; }
 
-        public Integer getAssault() {
-            return assault;
-        }
+        public void setResources(Resource resources) { this.resources = resources; }
 
-        public void setAssault(Integer assault) {
-            this.assault = assault;
-        }
+        public ResultWarfare getResults() { return results; }
 
-        public Integer getEngineer() {
-            return engineer;
-        }
-
-        public void setEngineer(Integer engineer) {
-            this.engineer = engineer;
-        }
-
-        public Integer getTank() {
-            return tank;
-        }
-
-        public void setTank(Integer tank) {
-            this.tank = tank;
-        }
-
-        public Integer getBunker() {
-            return bunker;
-        }
-
-        public void setBunker(Integer bunker) {
-            this.bunker = bunker;
-        }
+        public void setResults(ResultWarfare results) { this.results = results; }
     }
 
 }

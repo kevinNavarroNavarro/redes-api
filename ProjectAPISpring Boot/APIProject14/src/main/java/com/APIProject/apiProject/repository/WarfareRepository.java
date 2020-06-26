@@ -11,11 +11,11 @@ public interface WarfareRepository extends JpaRepository<Warfare, Integer> {
 
 
     @Query("SELECT w FROM Warfare w WHERE w.warfareName=:warfare")
-    Warfare findByWarfareName(@Param("warfare") String warfare);
+    List<Warfare> findByWarfareName(@Param("warfare") String warfare);
 
 
     @Query("SELECT s FROM Warfare s WHERE s.email=:email")
-    Warfare findByEmail(@Param("email") String email);
+    List<Warfare> findByEmail(@Param("email") String email);
 
 
     @Query("SELECT s FROM Warfare s WHERE s.faction=:faction")
